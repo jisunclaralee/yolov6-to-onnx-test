@@ -1,0 +1,23 @@
+# YOLOv6 to ONNX - Python Dependencies
+
+# Core dependencies
+numpy==1.26.4
+onnxruntime==1.17.3
+onnx==1.16.0
+
+# Computer Vision
+opencv-python-headless==4.9.0.80
+
+# Deep Learning
+torch>=2.0.0
+torchvision>=0.15.0
+
+# Utilities
+tqdm>=4.65.0
+requests>=2.31.0
+matplotlib>=3.7.0
+pillow>=10.0.0
+
+# Optional: For Jupyter notebook support
+jupyter>=1.0.0
+ipykernel>=6.25.0
