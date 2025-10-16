@@ -15,17 +15,16 @@
 
 ```
 yolov6-to-onnx-test/
-├── yolov6_inference.py      # YOLOv6 설정 및 ONNX 변환
 ├── yolov6_image.py          # COCO 샘플을 이용한 이미지 처리
 ├── yolov6_video.py          # 비디오 배치 처리
-├── test.py                  # 기본 테스트 스크립트
-├── yolov6_to_onnx.ipynb     # Jupyter 노트북 버전
 ├── requirements.txt         # Python 의존성
 ├── input_videos/            # 입력 비디오 폴더
 ├── output_videos/           # 처리된 비디오 출력 폴더
 ├── coco_images/            # 다운로드된 COCO 샘플 이미지
 ├── detection_results/      # 이미지 탐지 결과
-└── README.md               
+├── yolov6n.onnx            # 변환된 ONNX 모델
+├── yolov6n.pt              # YOLOv6 PyTorch 가중치
+└── README.md               # 이 파일
 ```
 
 ## 🚀 빠른 시작
@@ -53,26 +52,17 @@ yolov6-to-onnx-test/
 
 ### 사용법
 
-#### 1. YOLOv6 모델 설정 및 ONNX 변환
-
-```bash
-python yolov6_inference.py
-```
-
-이 스크립트는 다음을 수행합니다:
-- 시스템 의존성 자동 설치
-- YOLOv6 레포지토리 클론
-- 사전 훈련된 가중치 다운로드
-- PyTorch 모델을 ONNX 형식으로 변환
-- 변환된 모델 테스트
-
-#### 2. COCO 샘플을 이용한 이미지 객체 탐지
+#### 1. COCO 샘플을 이용한 이미지 객체 탐지
 
 ```bash
 python yolov6_image.py
 ```
 
-기능:
+이 스크립트는 다음을 수행합니다:
+- 시스템 의존성 자동 설치
+- YOLOv6 레포지토리 클론 및 설정
+- 사전 훈련된 가중치 다운로드
+- PyTorch 모델을 ONNX 형식으로 변환
 - 5개의 다양한 COCO 데이터셋 샘플 이미지 다운로드
 - 각 이미지에 대해 객체 탐지 수행
 - 바운딩 박스가 포함된 주석 처리된 결과 저장
@@ -81,17 +71,20 @@ python yolov6_image.py
 **출력**: 
 - `coco_images/`: 다운로드된 샘플 이미지
 - `detection_results/`: 주석 처리된 이미지 및 JSON 요약
+- `yolov6n.onnx`: 변환된 ONNX 모델
 
-#### 3. 비디오 배치 처리
+#### 2. 비디오 배치 처리
 
 ```bash
 # 입력 디렉토리 생성 및 비디오 추가
 mkdir -p input_videos
 # 비디오 파일을 input_videos/에 복사
 
-# 모든 비디오 처리
+# 모든 비디오 처리 (ONNX 모델이 필요합니다)
 python yolov6_video.py
 ```
+
+**참고**: 비디오 처리를 위해서는 먼저 `yolov6_image.py`를 실행하여 ONNX 모델을 생성해야 합니다.
 
 기능:
 - `input_videos/` 디렉토리의 모든 비디오 처리
